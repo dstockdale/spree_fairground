@@ -14,10 +14,12 @@ end
 ENV['RAILS_ENV'] = 'test'
 
 require File.expand_path('../dummy/config/environment.rb',  __FILE__)
+StateMachines::Machine.ignore_method_conflicts = true
 
 require 'rspec/rails'
 require 'database_cleaner'
 require 'ffaker'
+require 'shoulda-matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -30,39 +32,25 @@ require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/factories'
 require 'spree/testing_support/url_helpers'
 
-# Requires factories defined in lib/spree_owl/factories.rb
-require 'spree_owl/factories'
+# Requires factories defined in lib/spree_content/factories.rb
+Dir[File.join(File.dirname(__FILE__), "factories/*.rb")].each {|f| require f }
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
-
-  # Infer an example group's spec type from the file location.
-  config.infer_spec_type_from_file_location!
-
-  # == URL Helpers
-  #
-  # Allows access to Spree's routes in specs:
-  #
-  # visit spree.admin_path
-  # current_path.should eql(spree.products_path)
-  config.include Spree::TestingSupport::UrlHelpers
-
-  # == Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
-  config.mock_with :rspec
+  
   config.color = true
+  config.disable_monkey_patching!
+  config.raise_errors_for_deprecations!
+  config.infer_spec_type_from_file_location!
+  config.mock_with :rspec
 
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  config.include FactoryGirl::Syntax::Methods
+  config.include Spree::TestingSupport::UrlHelpers
+  config.include Spree::TestingSupport::ControllerRequests, :type => :controller
+  config.extend Spree::TestingSupport::AuthorizationHelpers::Controller, :type => :controller
+  config.include FrontendControllerHelpers::Controller, :type => :controller
+
+
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  # Capybara javascript drivers require transactional fixtures set to false, and we use DatabaseCleaner
-  # to cleanup after each test instead.  Without transactional fixtures set to false the records created
-  # to setup a test will be unavailable to the browser, which runs under a separate server instance.
   config.use_transactional_fixtures = false
 
   # Ensure Suite is set to use transactions for speed.
