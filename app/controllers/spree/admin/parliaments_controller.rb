@@ -6,6 +6,7 @@ class Spree::Admin::ParliamentsController < Spree::Admin::BaseController
   end
 
   def show
+    @owls = @parliament.owls
   end
 
   def new
@@ -46,6 +47,6 @@ class Spree::Admin::ParliamentsController < Spree::Admin::BaseController
 
     # Only allow a trusted parameter "white list" through.
     def parliament_params
-      params.require(:parliament).permit(:name)
+      params.require(:parliament).permit(:name, owls_attributes: [:attachment, :feature_id, :feature_value, :alt])
     end
 end

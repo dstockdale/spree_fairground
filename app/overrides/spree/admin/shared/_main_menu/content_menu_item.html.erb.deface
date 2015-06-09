@@ -1,0 +1,6 @@
+<!-- insert_before "erb[silent]:contains('if Spree.user_class && can?(:admin, Spree.user_class)')" -->
+<% if can? :admin, Spree::Owl %>
+  <ul class="nav nav-sidebar">
+    <%= tab Spree.t(:name, scope: :owls), icon: "heart", url: admin_parliaments_url %>
+  </ul>
+<% end %>

@@ -1,21 +1,7 @@
-<%= form_for(@parliament) do |f| %>
-  <% if @parliament.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@parliament.errors.count, "error") %> prohibited this parliament from being saved:</h2>
+<%= render :partial => 'spree/admin/shared/error_messages', :locals => { :target => @parliament } %>
 
-      <ul>
-      <% @parliament.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= f.field_container :name, class: ['form-group'] do %>
+  <%= f.label :name, Spree.t(:give_name, scope: :owls) %> <span class="required">*</span>
+  <%= f.text_field :name, class: 'form-control name' %>
+  <%= f.error_message_on :name %>
 <% end %>

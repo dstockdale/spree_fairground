@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
+<% content_for :page_title do %>
+  <%= link_to(Spree.t(:name, scope: :owls), admin_parliaments_url) %> / <%= @parliament.name %>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @parliament.name %>
-</p>
+<% content_for :page_actions do %>
+  <%= link_to_with_icon 'translate', nil, admin_translations_path('parliament', @parliament.id), title: Spree.t(:'i18n.translations'), class: 'btn btn-sm btn-primary' %>
+<% end if can?(:translate, Spree::Parliament) %>
 
-<%= link_to 'Edit', edit_admin_parliament_path(@parliament) %> |
-<%= link_to 'Back', admin_parliaments_path %>
+<% if @owls.any? %>
+  <%= debug @owls %>
+<% end %>
