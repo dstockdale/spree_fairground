@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'shoulda-matchers', '~> 2.8'
   s.add_development_dependency 'capybara', '~> 2.4'
+  s.add_development_dependency 'poltergeist', '~> 1.5'
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'factory_girl', '~> 4.5'
