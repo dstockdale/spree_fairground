@@ -1,0 +1,10 @@
+<% content_for :page_title do %>
+  <%= link_to(Spree.t(:name, scope: :owls), admin_parliaments_url) %> / <%= link_to @parliament.name, admin_parliament_url(@parliament) %> / Slide X
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_slide, scope: :contents), 
+        new_admin_parliament_owl_url(@parliament), 
+        { :class => "btn-success", :icon => 'add', :id => 'admin_new_content' } %>
+  <%# link_to_with_icon 'translate', nil, admin_translations_path('parliament', @parliament.id), title: Spree.t(:'i18n.translations'), class: 'btn btn-sm btn-primary' if can?(:translate, Spree::Parliament) %>
+<% end if can?(:create, Spree::Parliament) %>
