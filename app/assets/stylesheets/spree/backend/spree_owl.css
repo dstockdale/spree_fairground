@@ -1,4 +1,5 @@
 /*
-Placeholder manifest file.
-the installer will append this file to the app vendored assets here: 'vendor/assets/stylesheets/spree/backend/all.css'
+ *= require spree_owl/owl.carousel
+ *= require spree_owl/owl.theme
+ *= require spree_owl/owl.transitions
 */
