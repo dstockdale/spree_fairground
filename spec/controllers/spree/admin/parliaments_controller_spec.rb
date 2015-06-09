@@ -2,6 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Spree::Admin::ParliamentsController, type: :controller do
 
+  stub_authorization!
+
   describe "GET #index" do
     it "assigns all parliaments as @parliaments" do
       parliament = create(:parliament)
