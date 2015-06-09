@@ -12,3 +12,6 @@ nbproject
 pkg
 *.swp
 spec/dummy
+Guardfile
+.ruby-version
+.ruby-gemset
