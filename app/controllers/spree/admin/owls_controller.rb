@@ -52,6 +52,6 @@ class Spree::Admin::OwlsController < Spree::Admin::BaseController
 
     # Only allow a trusted parameter "white list" through.
     def spree_owl_params
-      params.require(:owl).permit(:attachment, :attachment_file_name, :alt)
+      params.require(:owl).permit(:attachment, :attachment_file_name, :alt, :link, :body)
     end
 end

@@ -1,0 +1,18 @@
+To get this out
+- Sorting of slides: thumbs above the preview
+- Side config menu: store in the carousel as json
+- Launch popup thing so they can see it larger: maybe
+- Editing of slides: edit link near each thumb?
+- Allow HTML in slides :body field
+- See how to make slides link to things :a tag around everything? 
+- Sort out the helper to put it on pages
+  - Maybe some override thing like spree_digital
+
+Renaming to SpreeFairground
+
+Spree::Fairground::Carousel
+- Change table name to fairground_carousel
+- Change model name to Spree::Fairground::Carousel
+Spree::Fairground::Slide
+- Change table name to fairground_slide
+- Change model name to Spree::Fairground::Slide

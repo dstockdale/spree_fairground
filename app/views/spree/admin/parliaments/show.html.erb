@@ -14,7 +14,7 @@
     <% if @owls.any? %>
       <div id="<%= spree_dom_id @parliament %>" class="carousel">
       <%- @owls.each do |slide| -%>
-        <div><%= image_tag(slide.attachment.url, alt: slide.alt, class: "img-responsive") %></div>
+        <%= render_slide(slide) %>
       <%- end -%>
       </div>
     <% end %>
