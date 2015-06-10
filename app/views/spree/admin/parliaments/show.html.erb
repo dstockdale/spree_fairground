@@ -9,23 +9,37 @@
   <%# link_to_with_icon 'translate', nil, admin_translations_path('parliament', @parliament.id), title: Spree.t(:'i18n.translations'), class: 'btn btn-sm btn-primary' if can?(:translate, Spree::Parliament) %>
 <% end if can?(:create, Spree::Parliament) %>
 
-<div class="carousel-viewport">
-  <% if @owls.any? %>
-    <div id="<%= spree_dom_id @parliament %>" class="owl-carousel">
-    <%- @owls.each do |slide| -%>
-      <div><%= image_tag(slide.attachment.url, alt: slide.alt) %></div>
-    <%- end -%>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="col-md-8 text-center carousel-viewport">
+    <% if @owls.any? %>
+      <div id="<%= spree_dom_id @parliament %>" class="carousel">
+      <%- @owls.each do |slide| -%>
+        <div><%= image_tag(slide.attachment.url, alt: slide.alt, class: "img-responsive") %></div>
+      <%- end -%>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <%= render partial: "carousel_settings" %>
+  </div>
 </div>
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $("#<%= spree_dom_id @parliament %>").owlCarousel({
-      navigation : true, // Show next and prev buttons
-      slideSpeed : 300,
-      paginationSpeed : 400,
-      singleItem:true
+    // $("#<%= spree_dom_id @parliament %>").owlCarousel({
+    //   navigation : true, // Show next and prev buttons
+    //   slideSpeed : 300,
+    //   paginationSpeed : 400,
+    //   singleItem:true
+    // });
+    $("#<%= spree_dom_id @parliament %>").slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      fade: true,
+      cssEase: 'linear',
+      autoplay: true,
+      autoplaySpeed: 5000,
     });
   });
 </script>

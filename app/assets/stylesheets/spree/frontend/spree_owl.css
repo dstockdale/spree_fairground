@@ -2,4 +2,6 @@
  *= require spree_owl/owl.carousel
  *= require spree_owl/owl.theme
  *= require spree_owl/owl.transitions
+ *= require spree_slick/slick
+ *= require spree_slick/slick-theme
 */

@@ -14,6 +14,14 @@ module SpreeOwl
         inject_into_file 'vendor/assets/stylesheets/spree/backend/all.css', " *= require spree/backend/spree_owl\n", :before => /\*\//, :verbose => true
       end
 
+
+      def add_fonts
+        copy_file "slick.eot", "app/assets/fonts/#{file_name}"
+        copy_file "slick.svg", "app/assets/fonts/#{file_name}"
+        copy_file "slick.ttf", "app/assets/fonts/#{file_name}"
+        copy_file "slick.woff", "app/assets/fonts/#{file_name}"
+      end
+
       def add_migrations
         run 'bundle exec rake railties:install:migrations FROM=spree_owl'
       end
