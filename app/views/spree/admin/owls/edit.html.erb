@@ -1,10 +1,9 @@
 <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @owl } %>
 
 <% content_for :page_title do %>
-  <%= link_to(Spree.t(:name, scope: :owls), admin_parliaments_url) %> / <%= link_to @parliament.name, admin_parliament_url(@parliament) %> / Slide X
+  <%= link_to(Spree.t(:name, scope: :owls), admin_parliaments_url) %> / <%= link_to @parliament.name, admin_parliament_url(@parliament) %> / Slide <%= @owl.position %>
 <% end %>
 
-<%= render partial: 'image_preview' %>
 <%= form_for [:admin, @parliament, @owl], html: { multipart: true } do |f| %>
   <fieldset data-hook="new_image">
     <%= render partial: 'form', locals: { f: f } %>

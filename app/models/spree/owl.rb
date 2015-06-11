@@ -18,7 +18,7 @@ class Spree::Owl < ActiveRecord::Base
 
   belongs_to :parliament, required: true
 
-  acts_as_list
+  acts_as_list scope: :parliament
 
   # save the w,h of the original image (from which others can be calculated)
   # we need to look at the write-queue for images which have not been saved yet

@@ -16,6 +16,7 @@
     </div>
   </div>
   <div data-hook="alt_text" class="col-md-6">
+    <%= render(partial: "image_preview", locals: { slide: f.object }) if f.object.attachment? %>
     <div class="form-group">
       <%= f.label :alt, Spree.t(:alt_text) %>
       <%= f.text_field :alt, class: 'form-control' %>

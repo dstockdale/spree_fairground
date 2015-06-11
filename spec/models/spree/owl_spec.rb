@@ -48,4 +48,14 @@ RSpec.describe Spree::Owl, type: :model do
   
   end
 
+  describe "position" do
+
+    it "increments if nil" do
+      owl1 = create(:owl, position: 5)
+      owl2 = create(:owl, position: nil)
+      binding.pry
+      expect(owl2.position).to eq(6)
+    end
+  end
+
 end
