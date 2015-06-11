@@ -6,7 +6,8 @@ module SpreeOwl
 
     # use rspec for tests
     config.generators do |g|
-      g.test_framework :rspec
+      g.test_framework :rspec, :view_specs => false, :fixture => false
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
 
     def self.activate
