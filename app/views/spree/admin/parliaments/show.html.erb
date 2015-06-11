@@ -27,7 +27,7 @@
     <div class="col-md-8 text-center carousel-viewport">
       <div id="<%= spree_dom_id @parliament %>" class="carousel" data-carousel data-sorting-url="<%= sort_admin_parliament_owls_url(@parliament) %>">
       <%- @owls.each do |slide| -%>
-        <%= render partial: "spree/admin/owls/slide_#{slide.slide_type}", locals: { slide: slide } %>
+        <%= render partial: "spree/owls/slide_#{slide.slide_type}", locals: { slide: slide } %>
       <%- end -%>
       </div>
     </div>

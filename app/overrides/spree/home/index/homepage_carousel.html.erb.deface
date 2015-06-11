@@ -1,0 +1,2 @@
+<!-- insert_top "[data-hook='homepage_products']" -->
+<%= carousel(:homepage) %>

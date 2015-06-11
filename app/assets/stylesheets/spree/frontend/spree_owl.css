@@ -4,4 +4,5 @@
  *= require spree_owl/owl.transitions
  *= require spree_slick/slick
  *= require spree_slick/slick-theme
+ *= require spree_carousel/layout
 */
