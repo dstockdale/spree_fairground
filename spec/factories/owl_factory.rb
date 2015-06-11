@@ -5,5 +5,6 @@ FactoryGirl.define do
     alt Faker::Lorem.sentence
     attachment_content_type 'image/jpeg'
     attachment_file_name "#{SecureRandom.hex(5)}.jpg"
+    link "/some-page"
   end
 end

@@ -1,0 +1,5 @@
+<li data-slide-id="<%= slide.id %>">
+<%= link_to edit_admin_parliament_owl_path(slide.parliament_id, slide) do  -%>
+  <%= image_tag(slide.attachment.url(:mobile), class: "carousel-thumb") %>
+<%- end -%>
+</li>

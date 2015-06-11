@@ -9,8 +9,9 @@ class Spree::Owl < ActiveRecord::Base
   with_options if: :image_slide? do |slide|
     slide.validate :no_attachment_errors
     slide.validates_attachment :attachment,
-      :presence => true,
-      :content_type => { :content_type => %w(image/jpeg image/jpg image/png image/gif) }
+      presence: true,
+      content_type: { content_type: %w(image/jpeg image/jpg image/png image/gif) }
+    slide.validates :link, presence: true
   end
 
   validates :body, presence: true, if: :html_slide?

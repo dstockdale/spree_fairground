@@ -18,13 +18,15 @@
     </div>
     <div class="col-sm-12">
       <ul id="carousel-thumbs" class="ui-sortable list-inline carousel-thumbs">
-        <%= render partial: 'spree/owls/owl', collection: @owls %>
+        <%- @owls.each do |slide| -%>
+          <%= render partial: "spree/admin/owls/thumb_#{slide.slide_type}", locals: { slide: slide } %>
+        <%- end -%>
       </ul>
     </div>
     <div class="col-md-8 text-center carousel-viewport">
       <div id="<%= spree_dom_id @parliament %>" class="carousel">
       <%- @owls.each do |slide| -%>
-        <%= render_slide(slide) %>
+        <%= render partial: "spree/admin/owls/slide_#{slide.slide_type}", locals: { slide: slide } %>
       <%- end -%>
       </div>
     </div>

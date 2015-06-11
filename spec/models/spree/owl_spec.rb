@@ -19,6 +19,16 @@ RSpec.describe Spree::Owl, type: :model do
         owl = build(:owl, { slide_type: 'image' })
         expect(owl.valid?).to eq(true)
       end 
+
+      it "missing link invalid" do
+        owl = build(:owl, { link: nil, slide_type: 'image' })
+        expect(owl.valid?).to eq(false)
+      end
+
+      it "with link valid" do
+        owl = build(:owl, { slide_type: 'image' })
+        expect(owl.valid?).to eq(true)
+      end 
     
     end
 
