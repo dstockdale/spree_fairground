@@ -6,16 +6,30 @@ class Spree::Owl < ActiveRecord::Base
                     path: ':rails_root/public/spree/owls/:id/:style/:basename.:extension',
                     convert_options: { all: '-strip -auto-orient -colorspace sRGB' }
 
-  validate :no_attachment_errors
-  validates_attachment :attachment,
-    :presence => true,
-    :content_type => { :content_type => %w(image/jpeg image/jpg image/png image/gif) }
+  with_options if: :image_slide? do |slide|
+    slide.validate :no_attachment_errors
+    slide.validates_attachment :attachment,
+      :presence => true,
+      :content_type => { :content_type => %w(image/jpeg image/jpg image/png image/gif) }
+  end
+
+  validates :body, presence: true, if: :html_slide?
 
   belongs_to :parliament, required: true
+
+  acts_as_list
 
   # save the w,h of the original image (from which others can be calculated)
   # we need to look at the write-queue for images which have not been saved yet
   after_post_process :find_dimensions
+
+  def image_slide?
+    slide_type.downcase == "image"
+  end
+
+  def html_slide?
+    slide_type.downcase == "html"
+  end
 
   def find_dimensions
     temporary = attachment.queued_for_write[:original]

@@ -1,4 +1,14 @@
-<div data-hook="admin_image_form_fields" class="row">
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <%= f.label :slide_type, Spree.t(:slide_type, scope: :owls) %>
+      <%= f.select :slide_type, 
+            options_for_select([[Spree.t(:image), 'image'],[Spree.t(:html),'html']]), 
+            {}, { class: "form-control" } %>
+    </div>
+  </div>
+</div>
+<div class="row image-attribute">
   <div class="col-md-6">
     <div data-hook="file" class="form-group">
       <%= f.label :attachment, Spree.t(:filename) %>
@@ -16,3 +26,33 @@
     </div>
   </div>
 </div>
+<div class="row html-attribute">
+  <div class="col-sm-12">
+    <div class="form-group">
+      <%= f.label :body, Spree.t(:body) %>
+      <%= f.text_area :body, class: 'summernote' %>
+    </div>
+  </div>
+</div>
+
+<script>
+  var attrs = {
+    image: {
+      hide: ".html-attribute",
+      show: ".image-attribute"
+    }, 
+    html: {
+      hide: ".image-attribute",
+      show: ".html-attribute"
+    }
+  };
+  var displayFields = function(context) {
+    $(attrs[context].hide).hide();
+    $(attrs[context].show).show();
+  };
+  displayFields($('#owl_slide_type').val());
+  $('#owl_slide_type').on('change', function(e){
+    $('#owl_slide_type').val();
+    displayFields(this.value);
+  });
+</script>

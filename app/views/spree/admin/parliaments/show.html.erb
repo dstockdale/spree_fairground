@@ -8,38 +8,43 @@
         { :class => "btn-success", :icon => 'add', :id => 'admin_new_content' } %>
   <%# link_to_with_icon 'translate', nil, admin_translations_path('parliament', @parliament.id), title: Spree.t(:'i18n.translations'), class: 'btn btn-sm btn-primary' if can?(:translate, Spree::Parliament) %>
 <% end if can?(:create, Spree::Parliament) %>
-
-<div class="row">
-  <div class="col-md-8 text-center carousel-viewport">
-    <% if @owls.any? %>
+<% if @owls.any? %>
+  <div class="row">
+    <div class="col-sm-12">
+      <p>
+        <small>Drag thumbs to sort, click to edit</small>
+        <button class="hidden btn btn-success btn-xs" id="update-sorting">Save new order</button>
+      </p>
+    </div>
+    <div class="col-sm-12">
+      <ul id="carousel-thumbs" class="ui-sortable list-inline carousel-thumbs">
+        <%= render partial: 'spree/owls/owl', collection: @owls %>
+      </ul>
+    </div>
+    <div class="col-md-8 text-center carousel-viewport">
       <div id="<%= spree_dom_id @parliament %>" class="carousel">
       <%- @owls.each do |slide| -%>
         <%= render_slide(slide) %>
       <%- end -%>
       </div>
-    <% end %>
+    </div>
+    <div class="col-md-4">
+      <%= render partial: "carousel_settings" %>
+    </div>
   </div>
-  <div class="col-md-4">
-    <%= render partial: "carousel_settings" %>
-  </div>
-</div>
+<% end %>
 
 <script type="text/javascript">
   $(document).ready(function() {
-    // $("#<%= spree_dom_id @parliament %>").owlCarousel({
-    //   navigation : true, // Show next and prev buttons
-    //   slideSpeed : 300,
-    //   paginationSpeed : 400,
-    //   singleItem:true
-    // });
     $("#<%= spree_dom_id @parliament %>").slick({
       dots: true,
+      arrows: true,
       infinite: true,
       speed: 500,
       fade: true,
       cssEase: 'linear',
       autoplay: true,
-      autoplaySpeed: 5000,
+      autoplaySpeed: 3000,
     });
   });
 </script>
