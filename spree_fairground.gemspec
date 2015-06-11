@@ -3,8 +3,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_fairground'
   s.version     = '3.0.0'
-  s.summary     = 'Sticks the lovely Owl Carousel into Spree V3'
-  s.description = 'Sticks the lovely Owl Carousel into Spree V3'
+  s.summary     = 'Multilingual Carousels for Spree V3'
+  s.description = 'Multilingual Carousels for Spree V3'
   s.required_ruby_version = '>= 2.0.0'
 
   s.author    = 'Dom Stockdale'

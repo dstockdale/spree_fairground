@@ -3,11 +3,9 @@
 
 en:
   spree:
-    controller:
-      controller_name: "Owl Carousels"
     slides:
       name: "Carousels"
-      long_name: "Owl Carousels"
+      long_name: "Fairground Carousels"
       create: "Create Carousel"
       give_name: "Give Your Carousel a Name"
       new_slide: "Create New Slide"

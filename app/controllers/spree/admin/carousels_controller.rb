@@ -20,7 +20,7 @@ class Spree::Admin::CarouselsController < Spree::Admin::BaseController
     @carousel = Spree::Carousel.new(carousel_params)
 
     if @carousel.save
-      redirect_to admin_carousel_url(@carousel), notice: 'Parliament was successfully created.'
+      redirect_to admin_carousel_url(@carousel), notice: 'Carousel was successfully created.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Spree::Admin::CarouselsController < Spree::Admin::BaseController
 
   def update
     if @carousel.update(carousel_params)
-      redirect_to admin_carousel_url(@carousel), notice: 'Parliament was successfully updated.'
+      redirect_to admin_carousel_url(@carousel), notice: 'Carousel was successfully updated.'
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class Spree::Admin::CarouselsController < Spree::Admin::BaseController
 
   def destroy
     @carousel.destroy
-    redirect_to admin_carousels_url, notice: 'Parliament was successfully destroyed.'
+    redirect_to admin_carousels_url, notice: 'Carousel was successfully destroyed.'
   end
 
   private
