@@ -6,7 +6,7 @@ class Spree::Admin::ParliamentsController < Spree::Admin::BaseController
   end
 
   def show
-    @owls = @parliament.owls
+    @owls = @parliament.owls.order(position: :desc)
   end
 
   def new

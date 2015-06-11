@@ -39,6 +39,16 @@ class Spree::Admin::OwlsController < Spree::Admin::BaseController
     redirect_to admin_parliament_path(@parliament), notice: 'Slide was successfully destroyed.'
   end
 
+  def sort
+    updates = params[:sorting].each_with_index do |id, index|
+      position = index + 1
+      @parliament.owls.find(id).update_column(:position, position)
+    end
+    respond_to do |format|
+      format.json { render json: { success: true }, status: :ok }
+    end
+  end
+
   private
 
     def set_parent_resource
@@ -52,6 +62,6 @@ class Spree::Admin::OwlsController < Spree::Admin::BaseController
 
     # Only allow a trusted parameter "white list" through.
     def spree_owl_params
-      params.require(:owl).permit(:attachment, :attachment_file_name, :alt, :link, :body, :slide_type)
+      params.require(:owl).permit(:attachment, :attachment_file_name, :alt, :link, :body, :slide_type, :sorting)
     end
 end

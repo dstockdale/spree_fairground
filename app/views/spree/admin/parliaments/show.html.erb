@@ -8,6 +8,7 @@
         { :class => "btn-success", :icon => 'add', :id => 'admin_new_content' } %>
   <%# link_to_with_icon 'translate', nil, admin_translations_path('parliament', @parliament.id), title: Spree.t(:'i18n.translations'), class: 'btn btn-sm btn-primary' if can?(:translate, Spree::Parliament) %>
 <% end if can?(:create, Spree::Parliament) %>
+
 <% if @owls.any? %>
   <div class="row">
     <div class="col-sm-12">
@@ -24,7 +25,7 @@
       </ul>
     </div>
     <div class="col-md-8 text-center carousel-viewport">
-      <div id="<%= spree_dom_id @parliament %>" class="carousel">
+      <div id="<%= spree_dom_id @parliament %>" class="carousel" data-carousel data-sorting-url="<%= sort_admin_parliament_owls_url(@parliament) %>">
       <%- @owls.each do |slide| -%>
         <%= render partial: "spree/admin/owls/slide_#{slide.slide_type}", locals: { slide: slide } %>
       <%- end -%>
@@ -38,15 +39,34 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $("#<%= spree_dom_id @parliament %>").slick({
-      dots: true,
-      arrows: true,
-      infinite: true,
-      speed: 500,
-      fade: true,
-      cssEase: 'linear',
-      autoplay: true,
-      autoplaySpeed: 3000,
-    });
+    var Carousel = {
+      element: function(){
+        return $("[data-carousel]");
+      },
+      items: function(){
+        return this.element().find('.carousel-slide-item');
+      },
+      state: {
+        unfinished: false
+      },
+      start: function() {
+        this.element().slick({
+          dots: true,
+          arrows: true,
+          infinite: true,
+          speed: 500,
+          fade: true,
+          cssEase: 'linear',
+          autoplay: true,
+          autoplaySpeed: 3000,
+        });
+      }, 
+      stop: function(){
+        this.element().slick('unslick');
+        return this.element();
+      }
+    };
+    Carousel.start();
+    window.Spree.Carousel = Carousel;
   });
 </script>
