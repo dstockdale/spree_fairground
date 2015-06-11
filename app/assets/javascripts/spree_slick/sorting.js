@@ -17,7 +17,7 @@ $(function() {
     }).get();
 
     for (k = 0, len = mapping.length; k < len; k++) {
-      var $el = $('#spree_owl_' + mapping[k]);
+      var $el = $('#spree_slide_' + mapping[k]);
       $el.data('newOrder',k).attr('data-new-order',k);
     }
 

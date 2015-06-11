@@ -1,0 +1,40 @@
+<% content_for :page_title do %>
+  <%= Spree.t :long_name, scope: :slides %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:create, scope: :slides), 
+        new_admin_carousel_url, 
+        { :class => "btn-success", :icon => 'add', :id => 'admin_new_carousel' } %>
+<% end if can?(:create, Spree::Carousel) %>
+
+<% if @carousels.any? %>
+  <table class="table" id="listing_products">
+    <thead>
+      <tr data-hook="admin_products_index_headers">
+        <th><%= Spree.t(:name, scope: :slides) %></th>
+        <th data-hook="admin_products_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @carousels.each do |carousel| %>
+      <tr id="<%= spree_dom_id carousel %>" data-hook="admin_carousels_index_rows" class="<%= cycle('odd', 'even') %>">
+        <td><%= link_to carousel.name, admin_carousel_path(carousel) %></td>
+        <td class="actions actions-3 text-right" data-hook="admin_carousel_index_row_actions">
+          
+          <%= link_to_with_icon('delete', nil, admin_carousel_path(carousel),
+                title: Spree.t(:delete),
+                data: { confirm: Spree.t(:are_you_sure), action: 'remove' }, 
+                class: "btn btn-danger btn-sm delete-resource icon-link with-tip action-delete") if can?(:destroy, carousel) %>
+
+          <%= link_to_with_icon('edit', nil, admin_carousel_path(carousel),
+                title: Spree.t(:edit),
+                data: { action: 'edit' }, 
+                class: "btn btn-primary btn-sm icon-link with-tip action-edit") if can?(:edit, carousel)  %>
+
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

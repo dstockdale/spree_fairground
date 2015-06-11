@@ -31,7 +31,7 @@ end
 
 desc 'Generates a dummy app for testing'
 task :test_app do
-  ENV['LIB_NAME'] = 'spree_owl'
+  ENV['LIB_NAME'] = 'spree_fairground'
   Rake::Task['extension:test_app'].invoke
 end
 
@@ -44,3 +44,5 @@ rescue LoadError
     Dir.chdir("../../")
   end
 end
+
+Dir.glob('lib/tasks/*.rake').each { |r| load r}

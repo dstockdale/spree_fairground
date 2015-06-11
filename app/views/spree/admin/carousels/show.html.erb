@@ -1,0 +1,73 @@
+<% content_for :page_title do %>
+  <%= link_to(Spree.t(:name, scope: :slides), admin_carousels_url) %> / <%= @carousel.name %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_slide, scope: :contents), 
+        new_admin_carousel_slide_url(@carousel), 
+        { :class => "btn-success", :icon => 'add', :id => 'admin_new_content' } %>
+  <%# link_to_with_icon 'translate', nil, admin_translations_path('carousel', @carousel.id), title: Spree.t(:'i18n.translations'), class: 'btn btn-sm btn-primary' if can?(:translate, Spree::Carousel) %>
+<% end if can?(:create, Spree::Carousel) %>
+
+<% if @slides.any? %>
+  <div class="row">
+    <div class="col-sm-12">
+      <p>
+        <small>Drag thumbs to sort, click them to edit</small>
+        <button class="hidden btn btn-success btn-xs" id="update-sorting">Save new order</button>
+      </p>
+    </div>
+    <div class="col-sm-12">
+      <ul id="carousel-thumbs" class="ui-sortable list-inline carousel-thumbs">
+        <%- @slides.each do |slide| -%>
+          <%= render partial: "spree/admin/slides/thumb_#{slide.slide_type}", locals: { slide: slide } %>
+        <%- end -%>
+      </ul>
+    </div>
+    <div class="col-md-8 text-center carousel-viewport">
+      <div id="<%= spree_dom_id @carousel %>" class="carousel" data-carousel data-sorting-url="<%= sort_admin_carousel_slides_url(@carousel) %>">
+      <%- @slides.each do |slide| -%>
+        <%= render partial: "spree/slides/slide_#{slide.slide_type}", locals: { slide: slide } %>
+      <%- end -%>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <p><i class="fa fa-bomb"></i> <small>some settings like, speed, transitions etc to come here soon...</small></p>
+      <%#= render partial: "carousel_settings" %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var Carousel = {
+      element: function(){
+        return $("[data-carousel]");
+      },
+      items: function(){
+        return this.element().find('.carousel-slide-item');
+      },
+      state: {
+        unfinished: false
+      },
+      start: function() {
+        this.element().slick({
+          dots: true,
+          arrows: true,
+          infinite: true,
+          speed: 500,
+          fade: true,
+          cssEase: 'linear',
+          autoplay: true,
+          autoplaySpeed: 3000,
+        });
+      }, 
+      stop: function(){
+        this.element().slick('unslick');
+        return this.element();
+      }
+    };
+    Carousel.start();
+    window.Spree.Carousel = Carousel;
+  });
+</script>

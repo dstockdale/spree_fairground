@@ -1,0 +1,10 @@
+<% content_for :page_title do %>
+  <%= link_to(Spree.t(:name, scope: :slides), admin_carousels_url) %> / <%= link_to @carousel.name, admin_carousel_url(@carousel) %> / Slide X
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_slide, scope: :contents), 
+        new_admin_carousel_slide_url(@carousel), 
+        { :class => "btn-success", :icon => 'add', :id => 'admin_new_content' } %>
+  <%# link_to_with_icon 'translate', nil, admin_translations_path('carousel', @carousel.id), title: Spree.t(:'i18n.translations'), class: 'btn btn-sm btn-primary' if can?(:translate, Spree::Carousel) %>
+<% end if can?(:create, Spree::Carousel) %>

@@ -5,7 +5,7 @@ en:
   spree:
     controller:
       controller_name: "Owl Carousels"
-    owls:
+    slides:
       name: "Carousels"
       long_name: "Owl Carousels"
       create: "Create Carousel"

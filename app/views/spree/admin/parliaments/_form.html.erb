@@ -1,7 +1,0 @@
-<%= render :partial => 'spree/admin/shared/error_messages', :locals => { :target => @parliament } %>
-
-<%= f.field_container :name, class: ['form-group'] do %>
-  <%= f.label :name, Spree.t(:give_name, scope: :owls) %> <span class="required">*</span>
-  <%= f.text_field :name, class: 'form-control name' %>
-  <%= f.error_message_on :name %>
-<% end %>

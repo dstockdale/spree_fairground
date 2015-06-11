@@ -1,7 +1,7 @@
 Spree::BaseHelper.module_eval do
   def carousel(view)
     # use view to look up if there's a carousel available
-    collection = Spree::Parliament.first.owls
-    render partial: "spree/parliaments/owls", locals: { collection: collection }
+    collection = Spree::Carousel.first.slides
+    render partial: "spree/carousels/slides", locals: { collection: collection }
   end
 end

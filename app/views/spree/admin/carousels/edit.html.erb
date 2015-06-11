@@ -1,0 +1,16 @@
+<% content_for :page_title do %>
+  <%= Spree.t :edit, scope: :slides %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= link_to_with_icon 'translate', nil, admin_translations_path('carousel', @carousel.id), title: Spree.t(:'i18n.translations'), class: 'btn btn-sm btn-primary' %>
+<% end if can?(:translate, Spree::Carousel) %>
+
+<%= form_for [:admin, @carousel], :html => { :multipart => true } do |f| %>
+  <%= render partial: 'form', :locals => { :f => f } %>
+  <div class="form-actions" data-hook="buttons">
+    <%= button Spree.t('actions.edit'), 'ok', 'submit', {class: 'btn-success'} %>
+    <span class="or"><%= Spree.t(:or) %></span>
+    <%= button_link_to Spree.t('actions.cancel'), admin_carousels_url, :icon => 'remove' %>
+  </div>
+<% end %>
