@@ -52,7 +52,7 @@ class Spree::Admin::SlidesController < Spree::Admin::BaseController
   private
 
     def set_parent_resource
-      @carousel = Spree::Carousel.find(params[:carousel_id])
+      @carousel = Spree::Fairground::Carousel.find(params[:carousel_id])
     end
 
     # Use callbacks to share common setup or constraints between actions.

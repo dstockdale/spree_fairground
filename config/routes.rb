@@ -1,7 +1,7 @@
 Spree::Core::Engine.routes.draw do
   namespace :admin do
-    resources :carousels, path: "carousels" do
-      resources :slides, path: "slides" do
+    resources :carousels do
+      resources :slides do
         collection do
           patch :sort
         end

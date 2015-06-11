@@ -1,5 +1,5 @@
 <!-- insert_before "erb[silent]:contains('if Spree.user_class && can?(:admin, Spree.user_class)')" -->
-<% if can? :admin, Spree::Slide %>
+<% if can? :admin, Spree::Fairground::Slide %>
   <ul class="nav nav-sidebar">
     <%= tab Spree.t(:name, scope: :slides), icon: "heart", url: admin_carousels_url %>
   </ul>

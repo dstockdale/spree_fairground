@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Spree::Slide, type: :model do
+RSpec.describe Spree::Fairground::Slide, type: :model do
   
   describe "associations" do
     it { is_expected.to belong_to(:carousel) }

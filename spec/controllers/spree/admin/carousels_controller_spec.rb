@@ -23,7 +23,7 @@ RSpec.describe Spree::Admin::CarouselsController, type: :controller do
   describe "GET #new" do
     it "assigns a new spree_admin as @spree_admin" do
       spree_get :new
-      expect(assigns(:carousel)).to be_a_new(Spree::Carousel)
+      expect(assigns(:carousel)).to be_a_new(Spree::Fairground::Carousel)
     end
   end
 
@@ -37,28 +37,28 @@ RSpec.describe Spree::Admin::CarouselsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Spree::Carousel" do
+      it "creates a new Spree::Fairground::Carousel" do
         expect {
           spree_post :create, carousel: attributes_for(:carousel)
-        }.to change(Spree::Carousel, :count).by(1)
+        }.to change(Spree::Fairground::Carousel, :count).by(1)
       end
 
       it "assigns a newly created spree_admin as @spree_admin" do
         spree_post :create, carousel: attributes_for(:carousel)
-        expect(assigns(:carousel)).to be_a(Spree::Carousel)
+        expect(assigns(:carousel)).to be_a(Spree::Fairground::Carousel)
         expect(assigns(:carousel)).to be_persisted
       end
 
       it "redirects to the created spree_admin" do
         spree_post :create, carousel: attributes_for(:carousel)
-        expect(response).to redirect_to([:admin, Spree::Carousel.last])
+        expect(response).to redirect_to([:admin, Spree::Fairground::Carousel.last])
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved spree_admin as @carousel" do
         spree_post :create, carousel: attributes_for(:carousel, name: nil)
-        expect(assigns(:carousel)).to be_a_new(Spree::Carousel)
+        expect(assigns(:carousel)).to be_a_new(Spree::Fairground::Carousel)
       end
 
       it "re-renders the 'new' template" do
@@ -120,7 +120,7 @@ RSpec.describe Spree::Admin::CarouselsController, type: :controller do
       carousel = create(:carousel)
       expect {
         spree_delete :destroy, id: carousel.id
-      }.to change(Spree::Carousel, :count).by(-1)
+      }.to change(Spree::Fairground::Carousel, :count).by(-1)
     end
 
     it "redirects to the carousels list" do

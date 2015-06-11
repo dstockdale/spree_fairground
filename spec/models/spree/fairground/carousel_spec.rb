@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Spree
 
-  RSpec.describe Spree::Carousel, type: :model do
+  RSpec.describe Spree::Fairground::Carousel, type: :model do
     
     describe "associations" do
       it { is_expected.to have_many(:slides) }

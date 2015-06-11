@@ -2,7 +2,7 @@ class Spree::Admin::CarouselsController < Spree::Admin::BaseController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
   def index
-    @carousels = Spree::Carousel.all
+    @carousels = Spree::Fairground::Carousel.all
   end
 
   def show
@@ -10,14 +10,14 @@ class Spree::Admin::CarouselsController < Spree::Admin::BaseController
   end
 
   def new
-    @carousel = Spree::Carousel.new
+    @carousel = Spree::Fairground::Carousel.new
   end
 
   def edit
   end
 
   def create
-    @carousel = Spree::Carousel.new(carousel_params)
+    @carousel = Spree::Fairground::Carousel.new(carousel_params)
 
     if @carousel.save
       redirect_to admin_carousel_url(@carousel), notice: 'Carousel was successfully created.'
@@ -42,7 +42,7 @@ class Spree::Admin::CarouselsController < Spree::Admin::BaseController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_resource
-      @carousel = Spree::Carousel.find(params[:id])
+      @carousel = Spree::Fairground::Carousel.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

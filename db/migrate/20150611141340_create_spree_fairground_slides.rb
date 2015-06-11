@@ -1,6 +1,6 @@
-class CreateSpreeSlides < ActiveRecord::Migration
+class CreateSpreeFairgroundSlides < ActiveRecord::Migration
   def change
-    create_table :spree_slides do |t|
+    create_table :spree_fairground_slides do |t|
       t.integer :attachment_width
       t.integer :attachment_height
       t.integer :attachment_file_size
@@ -10,11 +10,11 @@ class CreateSpreeSlides < ActiveRecord::Migration
       t.datetime :attachment_updated_at
       t.string :alt
       t.integer :carousel_id
-      t.integer :featurable_id
-      t.string :featurable_type
-
       t.timestamps null: false
+      t.string :link
+      t.text :body
+      t.string :slide_type, default: "image"
     end
-    add_index :spree_slides, :featurable_id
+    add_index :spree_fairground_slides, :slide_type
   end
 end

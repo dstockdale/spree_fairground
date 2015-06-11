@@ -1,4 +1,4 @@
-class Spree::Slide < ActiveRecord::Base
+class Spree::Fairground::Slide < ActiveRecord::Base
   has_attached_file :attachment,
                     styles: { mobile: '479x479>', tablet: '786x768>', desktop_small: '980x980>', desktop: '1200x1200>' },
                     default_style: :desktop,

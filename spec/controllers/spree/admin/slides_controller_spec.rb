@@ -27,7 +27,7 @@ RSpec.describe Spree::Admin::SlidesController, type: :controller do
     it "assigns a new slide as @slide" do
       carousel = create(:carousel)
       spree_get :new, carousel_id: carousel.id
-      expect(assigns(:slide)).to be_a_new(Spree::Slide)
+      expect(assigns(:slide)).to be_a_new(Spree::Fairground::Slide)
     end
   end
 
@@ -42,17 +42,17 @@ RSpec.describe Spree::Admin::SlidesController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Spree::Slide" do
+      it "creates a new Spree::Fairground::Slide" do
         carousel = create(:carousel)
         expect {
           spree_post :create, carousel_id: carousel.id, slide: attributes_for(:slide)
-        }.to change(Spree::Slide, :count).by(1)
+        }.to change(Spree::Fairground::Slide, :count).by(1)
       end
 
       it "assigns a newly created slide as @slide" do
         carousel = create(:carousel)
         spree_post :create, carousel_id: carousel.id, slide: attributes_for(:slide)
-        expect(assigns(:slide)).to be_a(Spree::Slide)
+        expect(assigns(:slide)).to be_a(Spree::Fairground::Slide)
         expect(assigns(:slide)).to be_persisted
       end
 
@@ -72,7 +72,7 @@ RSpec.describe Spree::Admin::SlidesController, type: :controller do
       it "assigns a newly created but unsaved slide as @slide" do
         carousel = create(:carousel)
         spree_post :create, carousel_id: carousel.id, slide: invalid_attributes
-        expect(assigns(:slide)).to be_a_new(Spree::Slide)
+        expect(assigns(:slide)).to be_a_new(Spree::Fairground::Slide)
       end
 
       it "re-renders the 'new' template" do
@@ -141,7 +141,7 @@ RSpec.describe Spree::Admin::SlidesController, type: :controller do
       slide = create(:slide, carousel: carousel)
       expect {
         spree_delete :destroy, { carousel_id: carousel.id, :id => slide.id }
-      }.to change(Spree::Slide, :count).by(-1)
+      }.to change(Spree::Fairground::Slide, :count).by(-1)
     end
 
     it "redirects to the slides list" do
